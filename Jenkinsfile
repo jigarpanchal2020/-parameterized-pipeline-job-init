@@ -5,6 +5,13 @@ pipeline {
     maven 'M3912'
   }
   stages {
+    stage('Maven Version') {
+      steps {
+        sh 'echo Print Maven Version'
+        sh 'mvn -version'
+        sh "echo sleep-Time - ${params.SLEEP_TIME},Port - ${params.APP_PORT},Branch - ${params.BRANCH_NAME}"
+      }
+    }
     stage('Build') {
       steps {
         sh 'mvn clean package -DskipTests=true'
@@ -34,7 +41,7 @@ pipeline {
     
     stage('Integration Testing') {
       steps {
-        sh "sleep 10s"
+        sh "sleep ${SLEEP_TIME}"
         sh 'echo Testing using cURL commands......'
       }
     }
