@@ -11,7 +11,6 @@ pipeline {
         archiveArtifacts 'target/hello-demo-*.jar'
       }
     }
-
     stage('Test') {
       steps {
         sh 'mvn test'
@@ -39,9 +38,6 @@ pipeline {
         sh 'echo Testing using cURL commands......'
       }
     }
-  }
-  tools {
-    maven 'M398'
   }
 
 }
